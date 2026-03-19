@@ -78,6 +78,33 @@ const redirectController = async (req, res) => {
   }
 };
 
+// delete the url
+const deleteShortUrlController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const url = await urlSchema.findById(id);
+    if (!url) {
+      return res.status(404).json({ message: "Short URL not found" });
+    }
+    if (req.user.id !== url.userId.toString()) {
+      console.log("User ID mismatch:", req.user.id, url.userId);
+      return res.status(403).json({ message: "Unauthorized" });
+    }
+    await urlSchema.findByIdAndDelete(id);
+    res.status(200).json({
+      message: "Short URL deleted successfully",
+      data: formatResponse(url),
+    });
+  } catch (e) {
+    console.error("Error in deleting short URL", e);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+
+
+
+
 // 4. Reusable response formatter with env-based base URL
 const formatResponse = (urlDoc) => ({
   id: urlDoc._id,
@@ -90,4 +117,5 @@ const formatResponse = (urlDoc) => ({
 module.exports = {
   createShortUrlController,
   redirectController,
+  deleteShortUrlController,
 };

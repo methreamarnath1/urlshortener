@@ -16,12 +16,16 @@ const { identifyUser } = require("../middlewares/auth.middleware");
 urlRouter.post("/", identifyUser, urlController.createShortUrlController);
 
 /*
- * @desc: This route is used to redirect to the original URL
- * @route: /api/url/:shortUrl
- * @method: GET
- * router.get("/:shortUrl", redirectController);
+ * @desc: This route isto delete a short URL
+ * @route: /api/url/:id
+ * @method: DELETE
+ * test data: {
+    "id": "64a9b8c5e4b0f1a2b3c4d5e"
+}   
+ * 
  */
+urlRouter.delete("/:id", identifyUser, urlController.deleteShortUrlController);
 
-urlRouter.get("/:shortUrl", urlController.redirectController);
+
 
 module.exports = urlRouter;
