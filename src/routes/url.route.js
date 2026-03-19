@@ -27,5 +27,16 @@ urlRouter.post("/", identifyUser, urlController.createShortUrlController);
 urlRouter.delete("/:id", identifyUser, urlController.deleteShortUrlController);
 
 
+/*
+    * @desc: This route is to get the analitical data of a short URL
+    * @route: /api/url/analytics/:id
+    * @method: GET
+    * test data: {
+        "id": "64a9b8c5e4b0f1a2b3c4d5e"
+    }
+        */
+// urlRouter.get("/analytics/:id", identifyUser, urlController.getUrlAnalyticsController);
+
+
 
 module.exports = urlRouter;

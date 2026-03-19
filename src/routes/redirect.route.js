@@ -1,6 +1,9 @@
 const express = require("express");
+
 const urlRedirect = express.Router();
-const urlController = require("../controllers/url.controllers");
+const {
+  redirectController,
+} = require("../controllers/urlRenderer.controllers");
 
 /*
  * @desc: This route is used to redirect to the original URL
@@ -9,11 +12,6 @@ const urlController = require("../controllers/url.controllers");
  * router.get("/:shortUrl", redirectController);
  */
 
-urlRedirect.get("/:shortUrl", urlController.redirectController);
-
- 
-
-
-
+urlRedirect.get("/:shortUrl", redirectController);
 
 module.exports = urlRedirect;
