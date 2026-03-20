@@ -5,12 +5,12 @@ const UAParser = require("ua-parser-js");
 
 const redirectController = async (req, res) => {
   try {
-    const { shortcode } = req.params;
+    const { shortUrl } = req.params;
 
     const urlData = await urlSchema.findOneAndUpdate(
-      { shortcode },
+      { shortUrl },
       { $inc: { clicks: 1 } },
-      { new: true },
+      { returnDocument: "after" },
     );
 
     if (!urlData) {
@@ -19,7 +19,7 @@ const redirectController = async (req, res) => {
 
     // Track click details
     trackClick(urlData, req);
-
+    console.log("Redirecting to:", urlData.originalUrl);
     return res.redirect(urlData.originalUrl);
   } catch (e) {
     console.error("Error in redirecting", e);

@@ -22,7 +22,7 @@ const getAnalytics = async (req, res) => {
 
     const objectId = new mongoose.Types.ObjectId(urlId);
     console.log("Fetching analytics for URL ID:", urlId);
-    console.log("User ID:", req.user._id);
+    console.log("User ID:", req.user.id);
     const url = await Url.findOne({ _id: objectId, userId: req.user.id });
     if (!url) return res.status(404).json({ message: "URL not found" });
 
@@ -100,7 +100,6 @@ const getAnalytics = async (req, res) => {
 
     analyticsCache.set(cacheKey, result);
     res.json(result);
-
   } catch (err) {
     console.error("Analytics error:", err);
     res.status(500).json({ message: "Server error" });
