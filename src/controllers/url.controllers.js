@@ -1,7 +1,8 @@
 const urlSchema = require("../models/url.model");
 const { nanoid } = require("nanoid");
 
-const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
+const BASE_URL =
+  process.env.BASE_URL || "https://your-backend-url.onrender.com";
 
 // Simple URL validator (no external deps)
 const isValidUrl = (str) => {

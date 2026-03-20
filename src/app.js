@@ -10,7 +10,7 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:8080",
+    origin: "https://your-backend-url.onrender.com",
   }),
 );
 app.use(express.json());
