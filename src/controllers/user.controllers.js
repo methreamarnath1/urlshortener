@@ -13,7 +13,7 @@ const getUserUrlsController = async (req, res) => {
       data: userUrls.map((url) => ({
         id: url._id,
         originalUrl: url.originalUrl,
-        shortUrl: `http://localhost:3000/${url.shortUrl}`,
+        shortUrl: `https://urlshortener-1-11bw.onrender.com/${url.shortUrl}`,
         clicks: url.clicks,
         createdAt: url.createdAt,
       })),
